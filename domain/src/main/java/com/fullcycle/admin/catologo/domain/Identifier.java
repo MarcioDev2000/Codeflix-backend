@@ -1,4 +1,4 @@
 package com.fullcycle.admin.catologo.domain;
 
-public class Identifier {
+public abstract class Identifier extends ValueObject  {
 }

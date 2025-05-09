@@ -1,4 +1,4 @@
 package com.fullcycle.admin.catologo.domain;
 
-public class ValueObject {
+public abstract class ValueObject {
 }

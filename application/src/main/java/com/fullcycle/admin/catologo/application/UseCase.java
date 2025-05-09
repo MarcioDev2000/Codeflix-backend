@@ -1,6 +1,6 @@
 package com.fullcycle.admin.catologo.application;
 
-import com.fullcycle.admin.catologo.domain.Category;
+import com.fullcycle.admin.catologo.domain.category.Category;
 
 public class UseCase {
 
