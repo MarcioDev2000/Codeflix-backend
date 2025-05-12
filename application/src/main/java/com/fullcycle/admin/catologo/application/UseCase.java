@@ -5,6 +5,6 @@ import com.fullcycle.admin.catologo.domain.category.Category;
 public class UseCase {
 
   public Category execute(){
-      return new Category();
+      return Category.newCategory("Categoria Teste", "Descrição Teste", true);
   }
 }
