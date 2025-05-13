@@ -1,6 +1,6 @@
 package com.fullcycle.admin.catologo.domain;
 
-import javax.xml.validation.ValidatorHandler;
+import com.fullcycle.admin.catologo.domain.validation.ValidationHandler;
 import java.util.Objects;
 
 public abstract class Entity<ID extends  Identifier> {
@@ -12,7 +12,7 @@ public abstract class Entity<ID extends  Identifier> {
         this.id = id;
     }
 
-    public abstract void validate(ValidatorHandler hander);
+    public abstract void validate(ValidationHandler handler);
 
     public ID getId(){
         return id;
