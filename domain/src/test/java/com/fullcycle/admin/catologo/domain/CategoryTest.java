@@ -1,6 +1,8 @@
 package com.fullcycle.admin.catologo.domain;
 
 import com.fullcycle.admin.catologo.domain.category.Category;
+import com.fullcycle.admin.catologo.domain.exception.DomainException;
+import com.fullcycle.admin.catologo.domain.validation.handler.ThrowsValidationHandler;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
