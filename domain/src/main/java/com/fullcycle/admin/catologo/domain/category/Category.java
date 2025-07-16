@@ -1,6 +1,6 @@
 package com.fullcycle.admin.catologo.domain.category;
-
 import com.fullcycle.admin.catologo.domain.AggregateRoot;
+import com.fullcycle.admin.catologo.domain.utils.InstantUtils;
 import com.fullcycle.admin.catologo.domain.validation.ValidationHandler;
 
 
@@ -46,6 +46,35 @@ public class Category extends AggregateRoot<CategoryID> {
     @Override
     public void validate(final ValidationHandler handler) {
         new CategoryValidator(this, handler).validate();
+    }
+
+
+    public Category activate() {
+        this.deletedAt = null;
+        this.active = true;
+        this.updatedAt = InstantUtils.now();
+        return this;
+    }
+
+    public Category deactivate() {
+        if (getDeletedAt() == null) {
+            this.deletedAt = InstantUtils.now();
+        }
+
+        this.active = false;
+        this.updatedAt = InstantUtils.now();
+        return this;
+    }
+
+    public Category update(final String aName, final String aDescription, final boolean isActive){
+        this.name = aName;
+        this.description = aDescription;
+
+        this.active = isActive;
+        this.deletedAt = isActive ? null : InstantUtils.now();
+
+        this.updatedAt = Instant.now();
+        return this;
     }
 
 
