@@ -7,13 +7,13 @@ import com.fullcycle.admin.catologo.domain.validation.ValidationHandler;
 import java.time.Instant;
 import java.util.UUID;
 
-public class Category extends AggregateRoot<CategoryID> {
+public class Category extends AggregateRoot<CategoryID> implements Cloneable {
 
 
     private String name;
     private String description;
     private boolean active;
-    private Instant createdAt;
+    private final Instant createdAt;
     private Instant updatedAt;
     private Instant deletedAt;
 
@@ -42,6 +42,39 @@ public class Category extends AggregateRoot<CategoryID> {
     final Instant deletedAt = isActive ? null : now;
     return new Category(id, aName, aDescription, isActive, now, now, deletedAt);
     }
+
+    public static Category with(
+            final CategoryID anId,
+            final String name,
+            final String description,
+            final boolean active,
+            final Instant createdAt,
+            final Instant updatedAt,
+            final Instant deletedAt
+    ) {
+        return new Category(
+                anId,
+                name,
+                description,
+                active,
+                createdAt,
+                updatedAt,
+                deletedAt
+        );
+    }
+
+    public static Category with(final Category aCategory) {
+        return with(
+                aCategory.getId(),
+                aCategory.name,
+                aCategory.description,
+                aCategory.isActive(),
+                aCategory.createdAt,
+                aCategory.updatedAt,
+                aCategory.deletedAt
+        );
+    }
+
 
     @Override
     public void validate(final ValidationHandler handler) {
@@ -105,5 +138,14 @@ public class Category extends AggregateRoot<CategoryID> {
 
     public Instant getDeletedAt() {
         return deletedAt;
+    }
+
+    @Override
+    public Category clone() {
+        try {
+            return (Category) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }
