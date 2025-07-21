@@ -3,6 +3,7 @@ package com.fullcycle.admin.catologo.application.category.update;
 import com.fullcycle.admin.catologo.application.UseCaseTest;
 import com.fullcycle.admin.catologo.domain.category.Category;
 import com.fullcycle.admin.catologo.domain.category.CategoryGateway;
+import org.junit.jupiter.api.BeforeEach;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
@@ -29,6 +30,11 @@ public class UpdateCategoryUseCaseTest extends UseCaseTest {
 
     @Mock
     private CategoryGateway categoryGateway;
+
+    @BeforeEach
+    void cleanUp(){
+        Mockito.reset(categoryGateway);
+    }
 
     // 1. Teste do caminho feliz
     // 2. Teste passando uma propriedade inválida (name)
